@@ -172,3 +172,37 @@
 ; 1. Filtra los números pares de la secuencia [1 2 3 4 5]
 ; 2. Eleva al cuadrado cada número de la secuencia filtrada
 ; 3. Retorna la secuencia resultantes
+
+;8. Loops
+;En Clojure, los loops se pueden hacer con la función loop y la función recur.
+
+;Recur suena a recursión, y es porque la función recur se usa para hacer recursión en Clojure.
+
+;Se puede usar recursión para hacer loops:
+;Ejemplo de calcular el factorial de un número (recursivamente)
+(defn factorial [n]
+  (if (zero? n)
+    1
+    (* n (factorial (dec n)))))
+
+;Ejemplo de calcular el factorial de un número (usando loop y recur)
+
+;Loop es como un let
+;Recur es como una función que se llama a sí misma
+
+
+(defn factorial [n]
+  (loop [i 1
+         r 1]
+    (if (> i n)
+      r
+      (recur (inc i) (* r i)))))
+
+
+;Pero es más recomendable usar el API de sequencias
+;LINK: https://arielortiz.info/s202111/tc2006/clojure_sequence_api/clojure_sequence_api.html
+
+
+(defn factorial [n]
+  (reduce *' 1 (range 1 (inc n))))
+
